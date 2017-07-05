@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 위의 부분은 고치면 안되는 설정 부분이기 때문에 복사해서 붙여 넣기 -->
+<mapper namespace="member">
+
+	<!-- 1.public int insert(Member member) -->
+	<insert id="insert" parameterType="com.haley.member.domain.Member">
+		INSERT INTO member VALUES
+		(SEQ_CODE.nextval, #{id}, #{pw})
+	</insert>
+
+
+	<!-- public List<Member> selectAll() -->
+	<select id="selectAll" resultType="com.haley.member.domain.Member">
+		select * from member
+	</select>
+
+	<!-- public Member selectOne(int code) -->
+	<select id="selectOne" resultType="com.haley.member.domain.Member"
+		parameterType="java.lang.Integer">
+		select * from member
+		where code = #{code}
+	</select>
+
+	<!-- public int update(Member member) -->
+
+	<update id="update" parameterType="com.haley.member.domain.Member">
+		update member
+		set id=#{id},
+		pw=#{pw}
+		where code = #{code}
+	</update>
+
+	<!-- public int delete(int code) -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from member
+		where
+		code=#{code}
+	</delete>
+
+	<!-- public Member selectId(String id); -->
+	<select id="selectId" resultType="com.haley.member.domain.Member"
+		parameterType="java.lang.String">
+		
+		select * from member
+		where id = #{id}
+
+	</select>
+
+
+</mapper>
